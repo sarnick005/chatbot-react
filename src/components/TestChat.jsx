@@ -83,9 +83,16 @@ const TestChat = () => {
     setError("");
     setDisplayResponse("");
     setPrompt("");
+    const apiUrl =
+      import.meta.env.VITE_API_URL ||
+      "https://chatbot-nodejs-lsjx.onrender.com";
+
+    console.log(apiUrl);
 
     try {
-      const res = await axios.post("/api/v1/test/chat", { prompt: newPrompt });
+      const res = await axios.post(`${apiUrl}/api/v1/test/chat`, {
+        prompt: newPrompt,
+      });
       const responseText =
         res.data.data.response || "Response received successfully";
       typeResponse(responseText);
